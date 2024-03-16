@@ -64,6 +64,6 @@ class HashTable{
 const table = new HashTable(10)
 table.insert('name','neethu')
 table.insert('age',24)
-table.display()
 table.insert('mane','na')
+table.insert('name','ajmal')
 table.display()

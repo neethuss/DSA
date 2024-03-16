@@ -23,6 +23,17 @@ class Stack{
     return this.items.length
   }
 
+  reverse(string){
+    let s=''
+    for(let i=0 ;i<string.length ;i++){
+      this.items.push(string[i])
+    }
+    while(!this.isEmpty()){
+      s+=this.items.pop()
+    }
+    return s
+  }
+
   print(){
     if(this.isEmpty()){
       console.log('Stack is empty');
