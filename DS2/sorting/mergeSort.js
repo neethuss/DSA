@@ -22,3 +22,4 @@ function merge(leftArr,rightArr){
 
 let arr = [4,9,-1,6,2,7,3]
 console.log(mergeSort(arr))
+
