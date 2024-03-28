@@ -3,11 +3,13 @@ class MaxHeap {
     this.values = [];
   }
 
+  //inseting new value to the heap
   insert(value) {
     this.values.push(value);
     this.bubbleUp();
   }
 
+  //ensure heap property while insertig
   bubbleUp() {
     let index = this.values.length - 1;
     let value = this.values[index];
@@ -21,16 +23,20 @@ class MaxHeap {
     }
   }
 
+  //removing max element
   extractMax() {
     let max = this.values[0];
     let end = this.values.pop();
-    if (this.values.length > 0) {
+    
+    if(this.values.length > 0){
       this.values[0] = end;
       this.sinkDown();
     }
+    
     return max;
   }
 
+  //ensure heap property after max removal
   sinkDown() {
     let index = 0;
     let length = this.values.length;
@@ -52,6 +58,7 @@ class MaxHeap {
     }
   }
 
+  //converting array to heap
   heapify(arr) {
     let lastNonLeafNode = Math.floor(arr.length / 2 - 1);
     for (let i = lastNonLeafNode; i >= 0; i--) {
@@ -60,6 +67,7 @@ class MaxHeap {
     return arr;
   }
 
+  //ensuring heap property while converting
   buildHeap(index, arr) {
     let largest = index;
     let length = arr.length;
@@ -76,13 +84,14 @@ class MaxHeap {
     }
   }
 
-  heapSort() {
-    let sortedArray = [];
-    let length = this.values.length;
-    for (let i = 0; i < length; i++) {
-      sortedArray.unshift(this.extractMax());
-    }
-    return sortedArray;
+
+  //heap sort
+  heapSort(){
+    let sorted = []
+    while(this.values.length){
+      sorted.unshift(this.extractMax())
+    } 
+    return sorted
   }
 
   print() {
@@ -99,5 +108,4 @@ heap.insert(50);
 heap.insert(10);
 heap.insert(90);
 heap.print();
-console.log("Heap Sort:");
 console.log(heap.heapSort());
