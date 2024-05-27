@@ -28,62 +28,44 @@ class MaxHeap {
     let max = this.values[0];
     let end = this.values.pop();
     
-    if(this.values.length > 0){
+    if (this.values.length > 0) {
       this.values[0] = end;
-      this.sinkDown();
+      this.heapifyDown(0, this.values.length);
     }
     
     return max;
   }
 
-  //ensure heap property after max removal
-  sinkDown() {
-    let index = 0;
-    let length = this.values.length;
+  heapifyDown(index, length) {
     while (true) {
       let largest = index;
       let leftIndex = 2 * index + 1;
       let rightIndex = 2 * index + 2;
+
       if (leftIndex < length && this.values[largest] < this.values[leftIndex])
         largest = leftIndex;
       if (rightIndex < length && this.values[largest] < this.values[rightIndex])
         largest = rightIndex;
 
       if (largest === index) break;
+
       [this.values[largest], this.values[index]] = [
         this.values[index],
         this.values[largest],
       ];
+
       index = largest;
     }
   }
 
-  //converting array to heap
   heapify(arr) {
-    let lastNonLeafNode = Math.floor(arr.length / 2 - 1);
+    this.values = arr;
+    let lastNonLeafNode = Math.floor(this.values.length / 2 - 1);
     for (let i = lastNonLeafNode; i >= 0; i--) {
-      this.buildHeap(i, arr);
+      this.heapifyDown(i, this.values.length);
     }
-    return arr;
+    return this.values;
   }
-
-  //ensuring heap property while converting
-  buildHeap(index, arr) {
-    let largest = index;
-    let length = arr.length;
-    let leftIndex = 2 * largest + 1;
-    let rightIndex = 2 * largest + 2;
-    if (leftIndex < length && arr[largest] < arr[leftIndex])
-      largest = leftIndex;
-    if (rightIndex < length && arr[largest] < arr[rightIndex])
-      largest = rightIndex;
-
-    if (largest != index) {
-      [arr[largest], arr[index]] = [arr[index], arr[largest]];
-      this.buildHeap(largest, arr);
-    }
-  }
-
 
   //heap sort
   heapSort(){
@@ -108,4 +90,4 @@ heap.insert(50);
 heap.insert(10);
 heap.insert(90);
 heap.print();
-console.log(heap.heapSort());
+// console.log(heap.heapSort());

@@ -9,7 +9,7 @@ function bubbleSort(arr){
         arr[i+1] = temp
         swapped = true
       }
-    }
+    } 
   }while(swapped)
 }
 
